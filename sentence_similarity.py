@@ -192,6 +192,7 @@ def TF_similarity(titles_list,args):
     return grouped_titles
 
 
+
 def GPT_unique_groups_and_sort(grouped_titles):
     # Flatten the list and create a mapping from title to its group
     title_to_group = {}
@@ -202,15 +203,20 @@ def GPT_unique_groups_and_sort(grouped_titles):
             else:
                 title_to_group[title].update(group)
 
-    # Reconstruct groups ensuring each title appears only once
-    unique_groups = []
-    processed_titles = set()
-    for title, group in title_to_group.items():
-        if title not in processed_titles:
-            new_group = sorted(group, key=lambda x: x.lower())
-            unique_groups.append(new_group)
-            processed_titles.update(new_group)
+    # Remove duplicates across groups
+    seen_titles = set()
+    for title, group in list(title_to_group.items()):
+        if title in seen_titles:
+            continue
+        seen_titles.update(group)
+        # Remove titles in 'group' that are already seen
+        title_to_group[title] = {t for t in group if t not in seen_titles}
 
-    # Sort each group by the initial letter
-    unique_groups = [sorted(group, key=lambda x: x.lower()) for group in unique_groups]
-    return unique_groups 
+    # Reconstruct groups ensuring each title appears only once
+    unique_groups = list(title_to_group.values())
+
+    # Sort each group by the initial letter and remove empty groups
+    unique_groups = [sorted(group, key=lambda x: x.lower()) for group in unique_groups if group]
+
+    return unique_groups
+
