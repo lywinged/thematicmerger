@@ -199,7 +199,8 @@ def save_json():
     for key, attributes in data["theme_attributes"].items():
         if "merged" in attributes and isinstance(attributes["merged"], list):
             # Extract only the second item from each sublist
-            attributes["merged"] = [pair[0] for pair in attributes["merged"] if isinstance(pair, list) and len(pair) > 1]
+            print(key,"11111",attributes["merged"])
+            attributes["merged"] = [pair[0] for pair in attributes["merged"] if isinstance(pair, list) and len(pair) > 1  and pair[0] != key]
 
     # Current timestamp
     current_time = datetime.now()
