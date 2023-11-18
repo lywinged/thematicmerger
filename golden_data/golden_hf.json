@@ -1,0 +1,465 @@
+{
+    "18/11/2023-20:07:35": {
+        "name": "themes.json",
+        "model": "GPT",
+        "args": "two",
+        "input": [
+            "absolutely terrible experience",
+            "access account info",
+            "easy access",
+            "account activity",
+            "account balance",
+            "bank account",
+            "account information",
+            "account number",
+            "login to the app",
+            "convenient app",
+            "app is easy",
+            "easy to use",
+            "app improvements",
+            "log into the app",
+            "open the app",
+            "authentication / login",
+            "works fine",
+            "biometric / finger print",
+            "cash checks",
+            "change password",
+            "mobile check deposit",
+            "mobile check",
+            "close my account",
+            "convenient",
+            "convenient and easy to use",
+            "great customer",
+            "great customer service",
+            "mobile deposit",
+            "access code",
+            "great experience",
+            "great tool",
+            "friendly service",
+            "friendly staff",
+            "great service",
+            "horrible service",
+            "ional service",
+            "locked out of my account",
+            "login info",
+            "login issue",
+            "manage my account",
+            "cannot access my account",
+            "cannot login",
+            "open an account",
+            "password manager",
+            "polite n professional",
+            "security",
+            "useful",
+            "view my account",
+            "waste of time",
+            "worst company"
+        ],
+        "output": [
+            [
+                "absolutely terrible experience",
+                "horrible service"
+            ],
+            [
+                "access account info",
+                "account information"
+            ],
+            [
+                "easy access",
+                "convenient app",
+                "app is easy",
+                "easy to use",
+                "convenient and easy to use"
+            ],
+            [
+                "login to the app",
+                "open the app"
+            ],
+            [
+                "mobile check deposit",
+                "mobile check",
+                "mobile deposit"
+            ],
+            [
+                "great customer service",
+                "friendly service",
+                "friendly staff",
+                "great service",
+                "polite n professional"
+            ],
+            [
+                "locked out of my account",
+                "cannot access my account",
+                "cannot login"
+            ]
+        ]
+    },
+    "18/11/2023-22:44:40": {
+        "theme_attributes": {},
+        "titles": {}
+    },
+    "18/11/2023-22:47:59": {
+        "some_key": "some_value"
+    },
+    "18/11/2023-22:50:21": {
+        "some_key": "some_value"
+    },
+    "18/11/2023-22:53:35": {
+        "some_key": "some_value"
+    },
+    "18/11/2023-23:17:24": {
+        "theme_attributes": {},
+        "titles": {
+            "time": "18-11-2023-23:17:24"
+        }
+    },
+    "18/11/2023-23:19:40": {
+        "theme_attributes": {},
+        "titles": {
+            "time": "18-11-2023-23:19:40"
+        }
+    },
+    "18/11/2023-23:22:01": {
+        "theme_attributes": {},
+        "titles": {
+            "time": "18-11-2023-23:22:01"
+        }
+    },
+    "18/11/2023-23:34:07": {
+        "theme_attributes": {},
+        "titles": {
+            "time": "18-11-2023-23:34:07"
+        }
+    },
+    "18/11/2023-23:34:47": {
+        "theme_attributes": {},
+        "titles": {
+            "time": "18-11-2023-23:34:47"
+        }
+    },
+    "18/11/2023-23:42:48": {
+        "theme_attributes": {},
+        "titles": {
+            "time": "18-11-2023-23:42:48"
+        }
+    },
+    "18/11/2023-23:46:52": {
+        "theme_attributes": {},
+        "titles": {
+            "time": "18-11-2023-23:46:52"
+        }
+    },
+    "18/11/2023-23:49:47": {
+        "theme_attributes": {},
+        "titles": {
+            "time": "18-11-2023-23:49:47"
+        }
+    },
+    "19/11/2023-00:39:48": {
+        "theme_attributes": {},
+        "titles": {
+            "time": "19-11-2023-00:39:48"
+        }
+    },
+    "19/11/2023-00:49:29": {
+        "theme_attributes": {},
+        "titles": {
+            "time": "19-11-2023-00:49:29"
+        }
+    },
+    "19/11/2023-02:37:50": {
+        "theme_attributes": {},
+        "titles": {
+            "time": "19-11-2023-02:37:50"
+        }
+    },
+    "19/11/2023-02:38:18": {
+        "theme_attributes": {},
+        "titles": {
+            "time": "19-11-2023-02:38:18"
+        }
+    },
+    "19/11/2023-02:39:15": {
+        "theme_attributes": {},
+        "titles": {
+            "time": "19-11-2023-02:39:15"
+        }
+    },
+    "19/11/2023-02:41:57": {
+        "theme_attributes": {},
+        "titles": {
+            "time": "19-11-2023-02:41:57"
+        }
+    },
+    "19/11/2023-02:54:56": {
+        "theme_attributes": {},
+        "titles": {
+            "time": "19-11-2023-02:54:56"
+        }
+    },
+    "19/11/2023-03:00:50": {
+        "theme_attributes": {},
+        "titles": {
+            "time": "19-11-2023-03:00:50"
+        }
+    },
+    "19/11/2023-03:01:40": {
+        "theme_attributes": {},
+        "titles": {
+            "time": "19-11-2023-03:01:40"
+        }
+    },
+    "19/11/2023-03:04:34": {
+        "theme_attributes": {},
+        "titles": {
+            "time": "19/11/2023-03:04:34"
+        }
+    },
+    "19/11/2023-03:07:18": {
+        "theme_attributes": {},
+        "titles": {
+            "time": "19/11/2023-03:07:18"
+        }
+    },
+    "19/11/2023-03:07:51": {
+        "theme_attributes": {},
+        "titles": {
+            "time": "19/11/2023-03:07:51"
+        }
+    },
+    "19/11/2023-03:20:08": {
+        "theme_attributes": {},
+        "titles": {
+            "time": "19/11/2023-03:20:08"
+        }
+    },
+    "19/11/2023-03:25:24": {
+        "theme_attributes": {},
+        "titles": {
+            "time": "19/11/2023-03:25:24"
+        }
+    },
+    "19/11/2023-03:26:00": {
+        "theme_attributes": {},
+        "titles": {
+            "time": "19/11/2023-03:26:00"
+        }
+    },
+    "19/11/2023-03:28:37": {
+        "theme_attributes": {},
+        "titles": {
+            "time": "19/11/2023-03:28:37"
+        }
+    },
+    "19/11/2023-03:28:38": {
+        "theme_attributes": {},
+        "titles": {
+            "time": "19/11/2023-03:28:38"
+        }
+    },
+    "19/11/2023-03:31:32": {
+        "theme_attributes": {},
+        "titles": {
+            "time": "19/11/2023-03:31:32"
+        }
+    },
+    "19/11/2023-03:36:07": {
+        "theme_attributes": {},
+        "titles": {
+            "time": "19/11/2023-03:36:07"
+        }
+    },
+    "19/11/2023-03:38:06": {
+        "theme_attributes": {},
+        "titles": {
+            "time": "19/11/2023-03:38:06"
+        }
+    },
+    "19/11/2023-03:42:30": {
+        "theme_attributes": {},
+        "titles": {
+            "time": "19/11/2023-03:42:30"
+        }
+    },
+    "19/11/2023-03:56:51": {
+        "theme_attributes": {},
+        "titles": {
+            "time": "19/11/2023-03:56:51"
+        }
+    },
+    "19/11/2023-04:33:36": {
+        "theme_attributes": {},
+        "titles": {
+            "time": "19/11/2023-04:33:36"
+        }
+    },
+    "19/11/2023-04:34:43": {
+        "theme_attributes": {},
+        "titles": {
+            "time": "19/11/2023-04:34:43"
+        }
+    },
+    "19/11/2023-04:36:18": {
+        "theme_attributes": {},
+        "titles": {
+            "time": "19/11/2023-04:36:18"
+        }
+    },
+    "19/11/2023-04:37:38": {
+        "theme_attributes": {},
+        "titles": {
+            "time": "19/11/2023-04:37:38"
+        }
+    },
+    "19/11/2023-04:39:37": {
+        "theme_attributes": {},
+        "titles": {
+            "time": "19/11/2023-04:39:37"
+        }
+    },
+    "19/11/2023-04:40:59": {
+        "theme_attributes": {},
+        "titles": {
+            "time": "19/11/2023-04:40:59"
+        }
+    },
+    "19/11/2023-04:51:43": {
+        "theme_attributes": {},
+        "titles": {
+            "time": "19/11/2023-04:51:43"
+        }
+    },
+    "19/11/2023-04:56:13": {
+        "theme_attributes": {},
+        "titles": {
+            "time": "19/11/2023-04:56:13"
+        }
+    },
+    "19/11/2023-05:55:44": {
+        "theme_attributes": {},
+        "titles": {
+            "time": "19/11/2023-05:55:44"
+        }
+    },
+    "19/11/2023-05:56:39": {
+        "theme_attributes": {},
+        "titles": {
+            "time": "19/11/2023-05:56:39"
+        }
+    },
+    "19/11/2023-05:58:06": {
+        "theme_attributes": {},
+        "titles": {
+            "time": "19/11/2023-05:58:06"
+        }
+    },
+    "19/11/2023-05:59:09": {
+        "theme_attributes": {},
+        "titles": {
+            "time": "19/11/2023-05:59:09"
+        }
+    },
+    "19/11/2023-06:00:26": {
+        "theme_attributes": {},
+        "titles": {
+            "time": "19/11/2023-06:00:26"
+        }
+    },
+    "19/11/2023-06:13:33": {
+        "theme_attributes": {},
+        "titles": {
+            "time": "19/11/2023-06:13:33"
+        }
+    },
+    "19/11/2023-06:19:47": {
+        "name": "themes.json",
+        "model": "BERT",
+        "args": "0.7",
+        "input": [
+            "absolutely terrible experience",
+            "access account info",
+            "easy access",
+            "account activity",
+            "account balance",
+            "bank account",
+            "account information",
+            "account number",
+            "login to the app",
+            "convenient app",
+            "app is easy",
+            "easy to use",
+            "app improvements",
+            "log into the app",
+            "open the app",
+            "authentication / login",
+            "works fine",
+            "biometric / finger print",
+            "cash checks",
+            "change password",
+            "mobile check deposit",
+            "mobile check",
+            "close my account",
+            "convenient",
+            "convenient and easy to use",
+            "great customer",
+            "great customer service",
+            "mobile deposit",
+            "access code",
+            "great experience",
+            "great tool",
+            "friendly service",
+            "friendly staff",
+            "great service",
+            "horrible service",
+            "ional service",
+            "locked out of my account",
+            "login info",
+            "login issue",
+            "manage my account",
+            "cannot access my account",
+            "cannot login",
+            "open an account",
+            "password manager",
+            "polite n professional",
+            "security",
+            "useful",
+            "view my account",
+            "waste of time",
+            "worst company"
+        ],
+        "output": [
+            [
+                "access account info",
+                "account information"
+            ],
+            [
+                "log into the app",
+                "open the app"
+            ],
+            [
+                "mobile check deposit",
+                "mobile deposit"
+            ],
+            [
+                "easy to use",
+                "convenient and easy to use"
+            ],
+            [
+                "great customer",
+                "great customer service"
+            ],
+            [
+                "friendly service",
+                "friendly staff"
+            ],
+            [
+                "locked out of my account",
+                "cannot access my account"
+            ],
+            [
+                "login issue",
+                "cannot login"
+            ]
+        ]
+    }
+}
