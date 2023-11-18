@@ -40,9 +40,10 @@ https://youtu.be/oxUxX7Pc_rM
 2. Open a web browser and navigate to `http://localhost:5000/`.
 
 ## Test: 13 test cases
-test/test_app.py 
-test/sentence_similarity.py 
-test/evaluation.py 
+- **test/test_app.py : 6 cases ---
+- **test/sentence_similarity.py : 6 cases --- 
+- **test/evaluation.py : 1 case 
+
 
    ```bash
    pytest
