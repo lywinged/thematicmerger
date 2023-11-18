@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Themes Merger</title>
+    <style>
+        /* Add your CSS styling here */
+        
+        .container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        
+        .column {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin: 10px;
+            overflow-y: auto;
+            height: 700px;
+            /* Or as needed */
+        }
+        
+        .button-container {
+            display: flex;
+           /* justify-content: flex-end; */
+        }
+        
+        button {
+            font-size: 1em;
+            margin-left: 5px;
+            padding: 2px 4px;
+        }
+        
+        .delbutton {
+            font-size: 0.5em;
+            margin-left: 5px;
+            padding: 2px 4px;
+            font: "bold";
+        }
+        
+        .delbutton:hover {
+            background-color: #e88f4f;
+            color: white;
+            cursor: pointer;
+        }
+        #statusMessage{
+            margin-left: 50%;
+            margin-top: 10px;
+        }
+        #cleanButton
+        {   
+        
+            font: "bold";
+            font-size: 0.8em;
+        }
+        #submit-hf
+        {
+            font: "bold";
+            font-size: 0.8em;
+        }
+        #generate
+        {
+            font: "bold";
+            font-size: 0.8em;
+        }
+        #saveButton {
+            margin-left: 92%; 
+            font: "bold";
+            font-size: 0.8em;
+        }
+        #saveButton:hover {
+            background-color: #e88f4f;
+            color: white;
+            cursor: pointer;
+        }
+        ul {
+            display: block;
+            list-style-type: disc;
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+            padding-inline-start: 10px;
+            margin:5px;
+        }
+        h1{
+            margin-left: 40%;
+        }
+        .column h3 {
+            /* Style for headings inside your column divs */
+        }
+        
+    </style>
+</head>
+
+<body>
+    <h1>Thematic:Themes Merger</h1>
+
+    <input type="file" id="fileInput" accept="application/json">
+    <button id="cleanButton">Clean Data</button>
+    <form action="/GPTthemes" id="myform" method="post">
+        <label for="function-select">Choose a function:</label>
+        <select name="function-select" id="function-select">
+            <option value="GPT">GPT Similarity</option>
+            <option value="BERT">BERT Similarity</option>
+            <option value="TF">TF Similarity</option>
+        </select>
+    
+        <label for="args-input">Enter argument:</label>
+        <input type="text" id="args-input" name="args-input" value="two">
+        <input type="submit" id="args-submit" value="Submit">
+
+
+        <div id="statusMessage"></div>
+    </form>
+    <label for="gen-input">Topic:</label>
+    <input type="text" id="gen-input" name="gen-input" value="Bank App">
+    <button id="generate">GPT4-Generate</button>
+    <button id="submit-hf">Submit-HF</button>
+    <button id="saveButton">Save JSON</button>
+    
+    <hr>
+   
+    <div class="container">
+        <div class="column" id="originalData">
+            <h3>Before:</h3>
+        </div>
+        <div class="column" id="mergedData">
+            <h3>After:</h3>
+        </div>
+    </div>
+    <div class="button-container">
+        <button id="saveButton">Save JSON</button>
+    </div>
+
+
+    <script>
+        let globalName=null
+        
+        document.getElementById('fileInput').addEventListener('change', handleFileSelect, false);
+         
+        function handleFileSelect(event) {
+            const reader = new FileReader();
+            globalName=(event.target.files[0].name)
+            reader.onload = handleFileLoad;
+            reader.readAsText(event.target.files[0]);
+        }
+        let globalData = null;
+
+        function handleFileLoad(event) {
+            const data = JSON.parse(event.target.result);
+            globalData = JSON.parse(event.target.result);
+            displayData(data, 'originalData');
+            // Send data to server for GPT4 processing and merging
+            sendDataToServer(data).then(mergedData => {
+                displayData(mergedData, 'mergedData');
+                globalData=mergedData;
+            });
+
+        }
+        function sendDataToServer(data) {
+            // First fetch request
+            const statusMessage = document.getElementById('statusMessage');
+            statusMessage.textContent = 'Running...';
+          
+
+            var form = document.getElementById('myform');
+            const formData = new FormData(form);
+            if (humanfeed == 1){
+                humanfeed=0;
+                var new_args=document.getElementById('args-input').value + "_humanfeed" 
+                formData.set('args-input', new_args);
+                globalName=document.getElementById('args-input').value + "_GPT";
+            }
+
+            return fetch('/GPTthemes', {
+                method: 'POST',  
+                body: formData
+            })
+            .then(() => {
+                // Second fetch request, executed after the first one completes
+                return fetch('/GPTthemes', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+              
+                });
+            })
+            .then(response => {
+                statusMessage.textContent = 'Done.';
+                if (!response.ok) {
+                    throw new Error('Second request failed');
+                }
+                return response.json();
+            })
+            .catch(error => {
+                    console.error('Error:', error); 
+                    statusMessage.textContent = 'Error occurred';
+        });
+        }
+       
+        
+
+        let globalInput=[];
+        let globalOutput=[];
+        let humanfeed=0;
+        function displayData(data, elementId) {
+            globalOutput=[]
+            const container = document.getElementById(elementId);
+            container.innerHTML = '';
+
+            // Display theme_attributes
+            const attributesHeader = document.createElement('h3');
+            attributesHeader.textContent = 'Theme Attributes:';
+            container.appendChild(attributesHeader);
+            sublist=[]
+            for (const key in data.theme_attributes) {
+                const itemDiv = document.createElement('div');
+                itemDiv.textContent = key + ': ';
+
+                const mergedItems = data.theme_attributes[key].merged;
+
+                if (mergedItems && Array.isArray(mergedItems)) {
+                    
+                    const mergedItemsList = document.createElement('ul'); // Use an unordered list to display items
+
+                    mergedItems.forEach((mergedItem, index) => {
+                        const mergedItemLi = document.createElement('li');
+                        mergedItemLi.textContent = mergedItem[1]; //[1] title
+                        sublist.push(mergedItem[1]);
+                        if (key != mergedItem[0]) {
+                            const deleteButton = document.createElement('button');
+                            deleteButton.className = 'delbutton';
+                            deleteButton.textContent = 'X';
+                            deleteButton.onclick = () => removeMergedItem(key, index, data.theme_attributes);
+
+                            mergedItemLi.appendChild(deleteButton);
+                        }
+                        mergedItemsList.appendChild(mergedItemLi);
+                    });
+                    globalOutput.push(sublist)
+                    sublist=[] 
+              
+                    itemDiv.appendChild(mergedItemsList);
+                }
+
+                container.appendChild(itemDiv);
+            }
+            
+            // Display titles
+            const titlesHeader = document.createElement('h3');
+            titlesHeader.textContent = 'Titles:';
+            container.appendChild(titlesHeader);
+            globalInput=[] 
+            for (const key in data.titles) {
+                const titleItem = document.createElement('div');
+                
+                titleItem.textContent = key + ': ' + data.titles[key];
+                globalInput.push(data.titles[key])
+                container.appendChild(titleItem);
+            }
+        }
+
+        function removeMergedItem(key, index, themeAttributes) {
+            // Remove the specific item from the merged array
+            themeAttributes[key].merged.splice(index, 1);
+            // If no items left in the merged array, delete the merged key
+            if (themeAttributes[key].merged.length === 1) {
+        
+                delete themeAttributes[key].merged;
+            }
+            globalData.theme_attributes = themeAttributes;
+            refreshDisplay_output(globalData); // Refresh display with updated data
+        }
+
+
+        function generateData() {
+            // First fetch request
+            refreshDisplay(globalData);
+            globalName=document.getElementById('gen-input').value + "_GPT";
+            const statusMessage = document.getElementById('statusMessage');
+            statusMessage.textContent = 'Running...';
+            var genValue = document.getElementById('gen-input').value;
+            var argValue = document.getElementById('args-input').value;
+            var selectedValue = document.getElementById('function-select').value;
+            let inputValue = [selectedValue,argValue,genValue];
+            console.log(inputValue);
+            let formData = new FormData();
+            inputValue.forEach((item, index) => {
+                formData.append(`item${index}`, item);
+            });
+            //console.log(globalInput)
+            const jsonData = JSON.stringify(globalInput);
+            return fetch('/generateData', {
+                method: 'POST',  
+                body: formData
+            })
+            .then(() => {
+                return fetch('/generateData', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: jsonData
+                });
+            })
+            .then(response => {
+                statusMessage.textContent = 'Done.';
+                if (!response.ok) {
+                    throw new Error('Second request failed');
+                }
+                return response.json();
+            })
+            .then(data => {
+                displayData(data, 'mergedData');
+                //refreshDisplay(data);
+                globalData = data;
+            })
+            .catch(error => {
+                console.error('Error:', error); 
+                statusMessage.textContent = 'Error occurred';
+            });
+            
+        
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const selectElement = document.getElementById('function-select');
+            const argsInput = document.getElementById('args-input');
+            document.getElementById('args-input').value = 'two';
+            document.getElementById('args-submit').title= argsInput.title="'Two' or 'Some' of above items mean the same thing"
+            document.getElementById('gen-input').title=document.getElementById('generate').title="GPT-4 generate similar data based on current data and New Topic"
+            document.getElementById('submit-hf').title="Provide the last saved human feedback examples to GPT-4 and ask it to merged themes." 
+            selectElement.addEventListener('change', function() {
+                if (this.value === 'BERT') {
+                    argsInput.value = '0.7'; // Set default value for BERT
+                    document.getElementById('args-submit').title= argsInput.title="The threshold range is 0.1-0.99"
+                  
+                } 
+                else if (this.value === 'GPT') {
+                    argsInput.value = 'two'; // Set default value for GPT
+                    document.getElementById('args-submit').title= argsInput.title="'Two' or 'Some' of above items mean the same thing"
+                }
+                else if (this.value === 'TF') {
+                    argsInput.value = '2'; // Set default value for TF
+                    document.getElementById('args-submit').title=argsInput.title="The term frequency number"
+                }  
+                else {
+                    argsInput.value = ''; // Clear the field or set a different default value
+                }
+            });
+        }); 
+
+        document.getElementById('saveButton').addEventListener('click', function() {
+            // Assuming `data` is your JSON data
+            refreshDisplay_output(globalData);
+            hfdata={
+                "name": globalName,
+                "model": document.getElementById('function-select').value,
+                "args": document.getElementById('args-input').value,
+                "input": globalInput,
+                "output": globalOutput
+            }
+
+            fetch('/save-json', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(globalData)
+                })
+                .then(response => response.json())
+                .then(data => console.log(data)) // Handle response
+                .catch(error => console.error('Error:', error));
+            fetch('/save-hf-json', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(hfdata)
+                })
+                .then(response => response.json())
+                .then(data => console.log(data)) // Handle response
+                .catch(error => console.error('Error:', error));
+        });
+
+        function mergeData(data) {
+            // Your merging logic here
+
+            // Send data to server for GPT4 processing and merging
+            sendDataToServer(data).then(mergedData => {
+                console.log(mergedData)
+                displayData(mergedData, 'mergedData');
+            });
+            return data; // Return the merged data
+        }
+
+        function refreshDisplay(data) {
+            displayData(data, 'originalData'); // Refresh original data column
+            displayData(data, 'mergedData'); // Refresh merged data column
+        }
+
+        function refreshDisplay_output(data) {
+            displayData(data, 'mergedData'); // Refresh merged data column
+        }
+
+        function cleanData() {
+            document.getElementById('originalData').innerHTML = '';
+            document.getElementById('mergedData').innerHTML = '';
+            //Reset file input
+            document.getElementById('fileInput').value = '';
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('myform');
+            const statusMessage = document.getElementById('statusMessage'); 
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent the default form submission
+                refreshDisplay(globalData);
+                statusMessage.textContent = 'Running...';
+                
+                sendDataToServer(globalData).then(mergedData => {
+                    displayData(mergedData, 'mergedData');
+                    globalData=mergedData;
+                    statusMessage.textContent = 'Done';
+                });
+            });
+            
+        });
+        document.getElementById('submit-hf').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent the default button click behavior
+            document.getElementById('function-select').value="GPT";
+            document.getElementById('args-input').value="some";
+            refreshDisplay(globalData);
+            humanfeed = 1; 
+            statusMessage.textContent = 'Running...';
+        
+            sendDataToServer(globalData).then(mergedData => {
+                displayData(mergedData, 'mergedData');
+                globalData = mergedData;
+                statusMessage.textContent = 'Done';
+            });
+        });
+        document.getElementById('cleanButton').addEventListener('click', cleanData);
+        document.getElementById('generate').addEventListener('click', generateData);
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const originalDataColumn = document.getElementById('originalData');
+            const mergedDataColumn = document.getElementById('mergedData');
+
+
+            let isSyncingLeftScroll = false;
+            let isSyncingRightScroll = false;
+
+            originalDataColumn.addEventListener('scroll', function() {
+                if (!isSyncingLeftScroll) {
+                    isSyncingRightScroll = true;
+                    mergedDataColumn.scrollTop = this.scrollTop;
+                }
+                isSyncingLeftScroll = false;
+            });
+
+            mergedDataColumn.addEventListener('scroll', function() {
+                if (!isSyncingRightScroll) {
+                    isSyncingLeftScroll = true;
+                    originalDataColumn.scrollTop = this.scrollTop;
+                }
+                isSyncingRightScroll = false;
+            });
+        });
+        
+    </script>
+</body>
+
+</html>
