@@ -194,29 +194,27 @@ def TF_similarity(titles_list,args):
 
 
 def GPT_unique_groups_and_sort(grouped_titles):
-    # Flatten the list and create a mapping from title to its group
-    title_to_group = {}
-    for group in grouped_titles:
-        for title in group:
-            if title not in title_to_group:
-                title_to_group[title] = set(group)
-            else:
-                title_to_group[title].update(group)
+    # Create a set for each group
+    groups = [set(group) for group in grouped_titles]
 
-    # Remove duplicates across groups
-    seen_titles = set()
-    for title, group in list(title_to_group.items()):
-        if title in seen_titles:
-            continue
-        seen_titles.update(group)
-        # Remove titles in 'group' that are already seen
-        title_to_group[title] = {t for t in group if t not in seen_titles}
+    # Iterate over the groups and merge groups with common elements
+    merged_groups = []
+    while groups:
+        current_group = groups.pop(0)
+        indices_to_merge = []
 
-    # Reconstruct groups ensuring each title appears only once
-    unique_groups = list(title_to_group.values())
+        for i, group in enumerate(groups):
+            if current_group.intersection(group):
+                indices_to_merge.append(i)
 
-    # Sort each group by the initial letter and remove empty groups
-    unique_groups = [sorted(group, key=lambda x: x.lower()) for group in unique_groups if group]
+        # Merge groups and remove merged groups from the main list
+        for i in sorted(indices_to_merge, reverse=True):
+            current_group.update(groups.pop(i))
 
-    return unique_groups
+        merged_groups.append(current_group)
+
+    # Sort each merged group and convert back to list
+    sorted_merged_groups = [sorted(group, key=lambda x: x.lower()) for group in merged_groups]
+
+    return sorted_merged_groups
 
