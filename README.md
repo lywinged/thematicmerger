@@ -15,6 +15,7 @@ https://youtu.be/oxUxX7Pc_rM
 - Python 3.11
 - Flask
 - Additional Python libraries: requirements.txt
+- Browser: Google Chrome
 
 ### Setup
 1. Clone the repository:
@@ -54,6 +55,7 @@ https://youtu.be/oxUxX7Pc_rM
 - **Data Processing**: Choose between BERT, GPT, or TF algorithms to merge thematic data.
 - **Generate Data**: Leverage GPT-4 to generate new thematic data based on user input.
 - **Save Results**: Save the merged themes and human feedback in JSON format.
+- (After labeling 20-30 sets of ground truth data, we can let GPT-4 generates training data based on these ground truth seeds.)
 
 ## Contributing
 Contributions to this project are welcome. Please follow these steps:
