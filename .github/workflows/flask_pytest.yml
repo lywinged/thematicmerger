@@ -24,6 +24,15 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Run Pytest
+    - name: Run Pytest # only test the functions without OpenAI
       run: |
-        pytest # run all of the testcases in test/
+        pytest -k test_home_route
+        pytest -k test_GPTthemes_process
+        pytest -k test_save_json
+        pytest -k test_save_hf_json
+        pytest -k test_merging_titles
+        pytest -k test_BERT_similarity
+        pytest -k test_TF_similarity
+        pytest -k test_GPT_unique_groups_and_sort
+        pytest -k test_Eva
+        
