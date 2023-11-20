@@ -1,0 +1,21 @@
+name: Deploy to PythonAnywhere
+
+on:
+  push:
+    branches:
+      - main  # Set the branch you want to deploy from
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Deploy to PythonAnywhere
+      uses: docker://glynnbird/pa-deploy:latest
+      env:
+        PA_API_TOKEN: ${{ secrets.PA_API_TOKEN }}
+        PA_USERNAME: ${{ secrets.PA_USERNAME }}
+        PA_SERVER: louielunz.pythonanywhere.com  # Replace with your PythonAnywhere server
+        GITHUB_REPO: lywinged/thematicmerger  # Replace with your GitHub repo
