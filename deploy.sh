@@ -10,7 +10,7 @@ APP_DIR="/home/ubuntu/merger"
 VENV_DIR="$APP_DIR/venv_merger"
 
 # Your Git repository URL
-GIT_REPO="https://$GITHUB_USERNAME:$GITHUB_PAT@github.com/lywinged/thematicmerg$
+GIT_REPO="https://$GITHUB_USERNAME:$GITHUB_PAT@github.com/lywinged/thematicmerger.git"
 
 # Check if the application directory exists
 if [ ! -d "$APP_DIR/.git" ]; then
