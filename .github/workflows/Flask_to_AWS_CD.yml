@@ -22,10 +22,14 @@ jobs:
         EC2_SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
       run: |
         TEMP_SSH_KEY=$(mktemp)
-        echo "$EC2_SSH_PRIVATE_KEY" | base64 --decode > "$TEMP_SSH_KEY"
+        echo "$EC2_SSH_KEY" | base64 --decode > "$TEMP_SSH_KEY"
         chmod 600 "$TEMP_SSH_KEY"
         echo "SSH_KEY=$TEMP_SSH_KEY" >> $GITHUB_ENV
 
     - name: Flask Deploy to AWS EC2
+      env:
+        EC2_USER: ${{ secrets.EC2_USER }}
+        EC2_HOST: ${{ secrets.EC2_HOST }}
+        SSH_KEY: ${{ env.SSH_KEY }}
       run: |
-        ssh -o "StrictHostKeyChecking=no" -l ${{ secrets.EC2_USER }} ${{ secrets.EC2_HOST }} 'bash -s' < deploy.sh
+        ssh -i "$SSH_KEY" -o "StrictHostKeyChecking=no" "$EC2_USER@$EC2_HOST" 'bash -s' < deploy.sh
