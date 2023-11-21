@@ -11,6 +11,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    
+    - name: Set execute permission for deploy.sh
+      run: chmod +x deploy.sh
 
     - name: Set up Python
       uses: actions/setup-python@v2
