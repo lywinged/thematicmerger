@@ -24,14 +24,11 @@ jobs:
         echo "$EC2_SSH_KEY" | base64 --decode > ec2_ssh_key.pem
         chmod 600 ec2_ssh_key.pem
 
-    - name: Start SSH Agent
-      run: |
-        eval $(ssh-agent -s)
-        ssh-add ec2_ssh_key.pem
+
 
     - name: SSH and Execute Command
       env:
         EC2_USER: ${{ secrets.EC2_USER }}
         EC2_HOST: ${{ secrets.EC2_HOST }}
       run: |
-        ssh -vvv -o "StrictHostKeyChecking=no" "$EC2_USER@$EC2_HOST" 'bash -s' < deploy.sh
+        ssh -vvv -i ec2_ssh_key.pem -o "StrictHostKeyChecking=no" "$EC2_USER@$EC2_HOST" 'bash -s' < deploy.sh
