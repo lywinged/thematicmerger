@@ -1,41 +1,69 @@
 [
     [
-        "horrible service",
-        "absolutely terrible experience"
+        "worst company",
+        "absolutely terrible experience",
+        "horrible service"
     ],
     [
         "account information",
         "access account info"
     ],
     [
+        "convenient and easy to use",
+        "convenient",
         "app is easy",
-        "convenient app",
         "easy access",
-        "easy to use",
-        "convenient and easy to use"
+        "convenient app",
+        "easy to use"
     ],
     [
         "login to the app",
-        "log into the app",
         "open the app"
     ],
     [
-        "mobile deposit",
+        "mobile check",
         "mobile check deposit",
-        "mobile check"
+        "cash checks",
+        "mobile deposit"
     ],
     [
-        "friendly staff",
-        "friendly service",
-        "great service",
-        "great customer service",
         "great customer",
+        "friendly service",
+        "friendly staff",
+        "great customer service",
+        "great service",
         "polite n professional"
     ],
     [
-        "locked out of my account",
-        "cannot login",
         "cannot access my account",
-        "login issue"
+        "login issue",
+        "locked out of my account",
+        "cannot login"
+    ],
+    [
+        "view my account",
+        "account activity",
+        "manage my account"
+    ],
+    [
+        "ional service",
+        "great experience"
+    ],
+    [
+        "works fine",
+        "great tool",
+        "useful"
+    ],
+    [
+        "Mortgage calculator",
+        "Financial calculators"
+    ],
+    [
+        "Scheduled payments and transfers",
+        "Fund transfers between accounts"
+    ],
+    [
+        "login info",
+        "access code"
     ]
 ]
