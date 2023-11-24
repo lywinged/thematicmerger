@@ -5,8 +5,7 @@
 This Flask application is designed to merge thematic data using various similarity algorithms like BERT, GPT, and Term Frequency (TF). It allows users to upload JSON data, process it through different similarity measures, and save the merged results with Human feedback label.  
 The application also supports generating new data based on GPT-4 models and incorporates functionality for saving human feedback.
 ![Description or Alt text](sc.png)
-Video Intro:
-https://youtu.be/oxUxX7Pc_rM
+
 
 
 ## Installation
